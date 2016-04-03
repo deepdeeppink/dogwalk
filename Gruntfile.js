@@ -1,33 +1,76 @@
-
 module.exports = function(grunt) {
 
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt)
   grunt.initConfig({
     
     clean: [
-      'js/**'
+      'build/*',
+      'tmp/*',
     ],
-    
-    babel: {
-        options: {
-            sourceMap: false,
-            presets: ['es2015']
+
+    copy: {
+      html: {
+        files: [{
+          expand: true,
+          src: '**/*.html',
+          cwd: 'src',
+          dest: 'tmp',
+        }],
+      },
+      img: {
+        files: [{
+          expand: true,
+          src: '**/*.jpg',
+          cwd: 'img',
+          dest: 'build',
+        }],
+      },
+    },
+
+    sass: {
+      css: {
+        files: {
+          'tmp/css/style.css': 'src/css/style.scss',
         },
-        dist: {
-            files: {
-                'js/app.js': 'src/app.js'
-            }
-        }
+        options: {
+          sourceMap: false,
+        },
+      },
+    },
+
+    'inline-assets':{
+      build: {
+        // options:{
+        //   encoding:'utf8',
+        // },
+        files: {
+          'build/index.html': 'tmp/index.html',
+        },
+      },
+    },
+
+    browserify: {
+      js: {
+        files: {
+          'tmp/js/app.js': 'src/js/app.js',
+        },
+        options: {
+          transform: [[
+            'babelify', {
+              presets: ['react', 'es2015', 'stage-0'],
+            },
+          ]],
+        },
+      },
     },
 
     watch: {
-      js: {
-        files: ['src/**/*.js'],
-        tasks: ['js']
-      }
-    }
-  });
+      build: {
+        files: ['src/**/*.html', 'src/**/*.js', 'src/**/*.scss'],
+        tasks: ['default'],
+      },
+    },
+  })
 
-  grunt.registerTask('js', ['clean', 'babel']);
-  grunt.registerTask('default', ['watch']);
-};
+  grunt.registerTask('default', ['clean', 'copy', 'sass', 'browserify', 'inline-assets'])
+}

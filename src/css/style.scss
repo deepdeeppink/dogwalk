@@ -1,0 +1,13 @@
+body {
+	background-color: #000;
+}
+
+.u {
+	clip-path: url(#pattern);
+	width: 100vw;
+	height: 100vh;
+}
+
+.u:hover {
+	clip-path: none;
+}
