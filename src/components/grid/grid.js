@@ -112,7 +112,7 @@ let Grid = React.createClass({
 
 		return <div className={ this.getComponentClasses() } ref="root" >
 			{ this.renderCells(this.state.discreteWidth, this.state.discreteHeight) }
-	    </div>
+		</div>
 	},
 })
 
