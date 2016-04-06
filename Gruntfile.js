@@ -56,6 +56,9 @@ module.exports = function(grunt) {
 
 		'inline-assets':{
 			build: {
+				options: {
+					cssmin: true,
+				},
 				files: {
 					'build/index.html': 'tmp/index.html',
 				},
