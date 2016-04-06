@@ -6,9 +6,9 @@ import Pattern from './components/pattern/hex'
 import Grid from './components/grid/grid.js'
 
 ReactDOM.render(
-    <div>
+	<div>
 		<Grid />
-        <Pattern edge="2" padding=".1" />
-    </div>,
-    document.getElementById('app')
+		<Pattern edge="2" padding=".1" />
+	</div>,
+	document.getElementById('app')
 )

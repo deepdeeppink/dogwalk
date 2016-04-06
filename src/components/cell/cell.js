@@ -18,7 +18,7 @@ let Cell = React.createClass({
 			this.setState({
 				changing: true,
 			})
-		  	this.setTimeout(function() {
+			this.setTimeout(function() {
 
 				this.setState({
 					slideIndex: nextSlideNumber,
@@ -28,8 +28,8 @@ let Cell = React.createClass({
 					this.setState({
 						changing: false,
 					})
-			  	}, 300)
-		  	})
+				}, 300)
+			})
 		}
 	},
 
